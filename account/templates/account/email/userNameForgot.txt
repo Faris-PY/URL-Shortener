@@ -1,0 +1,8 @@
+Hi,
+
+We believe you forgot your URL Shorty's username & request for it. Here it is,
+
+Your username is: {{ username }}
+
+
+Team URL shortyme 

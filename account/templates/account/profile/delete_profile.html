@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="d-flex flex-row justify-content-center flex-wrap align-items-start">
+		<div class="card profile-card m-2">
+		  <div class="card-body">
+		  	<div class="d-flex flex-column p-4">
+		  		
+				<h5 class="card-title" style='text-align: center;'>Permanently Delete Your Account</h5>
+                <br>
+				<p class="card-text">Hello <strong>{{ username }}</strong>, </p>
+                <p class="card-text">We think you are going to delete your account. Once deleted all the details will be removed from our end.
+                    please think twice before going ahead.
+                </p>
+                <div class="col"><hr></div>
+                
+                <form  method="post" style='text-align: center;'>{% csrf_token %}
+                    <label class="select-reason" for="deletion-reason">Why are you deactivating your account?</label>
+                    <select id="deletion-reason" class="reason">
+                        <option value="---">Select</option>
+                        <option value="second-account">Created a second account</option>
+                        <option value="privacy-concerns">Privacy concerns</option>  
+                        <option value="other">Something else</option>
+                    </select>
+                    <br><br>
+                    <label for="pwd">To continue, please re-enter your password</label>
+                    <input type="password" id="pwd" name="pwd" minlength="8"><br><br>
+                    
+                    <div class="col"><hr></div>
+		        	<button class="mt-4 btn btn-primary flex-grow-1" style="width: 18rem;"  id='confirm-delete' disabled type="submit">Delete Account</button>
+                </form>           
+		  	</div>
+		  </div>
+		</div>		
+	</div>
+</div>
+
+<script type="text/javascript">
+    const field = document.getElementById("pwd");
+    const button = document.getElementById("confirm-delete");
+
+    field.addEventListener("input", function() {
+        button.disabled = field.value.length < 1 ;
+    })
+</script>
+
+{% endblock content %}

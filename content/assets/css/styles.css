@@ -1,0 +1,156 @@
+/* base */
+
+.main {
+    min-height: 100vh;
+    height: 100%;
+}
+
+
+/* footer*/
+
+.footer {
+  
+    min-height: 75px;
+}
+
+
+/* Signup */
+
+.card-signup {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signup input[type='email']{
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0
+}
+
+.form-signup input[type="text"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signup input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+/* End Signup */
+
+/* Login */
+
+.card-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* End Login */
+
+
+/* Password change */
+
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+  
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.h3{
+    text-align: center;
+}
+
+  /* End password change */
+
+/* Profile */
+.image-container{
+    max-width: 250px;
+    height: auto;
+}
+
+
+.card{
+    border-radius: 12px;
+    
+}
+
+/* End Profile */
+
+/* Edit Profile */
+.image-container{
+    max-width: 250px;
+    height: auto;
+    position: relative;
+}
+
+.field-heading{
+    color: #737373;
+}
+
+#id_confirm{
+    color: green;
+}
+
+#id_confirm:hover {
+    opacity: 0.3;
+}
+
+#id_cancel:hover {
+    opacity: 0.3;
+}
+#id_cancel{
+    color: red;
+}
+
+.material-icons{
+    font-size: 30px;
+}
+
+.material-icons:hover{
+    cursor: pointer;
+}
+
+/* End Edit Profile */

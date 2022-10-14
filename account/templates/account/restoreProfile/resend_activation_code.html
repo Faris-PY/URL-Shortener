@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card card-signin text-center">
+            <div class="card-body">
+                <div class="d-flex flex-column my-4">
+                    <i class="material-icons md-48 m-auto">
+                        lock
+                    </i>
+                </div>
+                <p class="m-auto">Enter your email, we'll send details for your account</p>
+                <form class="form-signin" method="post">{% csrf_token %}
+                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    {% for field in ResendActivationCodeForm %}
+                    <p>
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                    {% endfor %}
+                    {% if ResendActivationCodeForm.non_field_errors %}
+                    <div style="color: red">
+                        <p>{{ResendActivationCodeForm.non_field_errors}}</p>
+                    </div>
+                    {% endif %} 
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

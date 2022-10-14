@@ -1,0 +1,116 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+<style type="text/css">
+	.my-grid{
+        background-color: white;
+	}
+	.my-grid-item{
+		border: 1px solid blue;
+	}
+</style>
+
+<div>   
+    <div class="container-fluid">
+        
+        {% if request.user.is_authenticated %}
+        <div id="activate_alert" class="alert alert-primary m-3" style="display: none;" role="alert">
+                activated                            
+        </div>
+        <div id="deactivate_alert" class="alert alert-primary m-3"  style="display: none;" role="alert">
+                deactivated                            
+        </div>
+            <!--link adding section-->
+            <div class="my-grid d-flex flex-column mt-4 flex-wrap align-items-start">
+                    <form class="form-signin" method="post" id="id_link_search", name="linkForm">{% csrf_token %}
+                        <textarea id="id_textarea" name="inputurl" form="id_link_search" rows="4" cols="37" placeholder="Paste your link" required></textarea>
+                        <button id="id_submit_btn" class="btn btn-sm btn-primary btn-block" type="submit">Add</button>  
+                    </form>
+            </div> 
+            <!--exissting link section-->
+            <div class="my-grid d-flex flex-column mt-4">
+                {% if urlData %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                              <th scope="col">old url</th>
+                              <th scope="col">new url</th>
+                              <th scope="col">status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in urlData %}
+                            <tr>
+                                <td>{{ x.old_url }}</td>
+                                <td>{{ x.new_url }}</td>
+                                <td>
+                                    <div class="custom-control custom-switch"> 
+                                        <input type="checkbox" class="custom-control-input" 
+                                         id="customSwitches_{{ x.id }}" {% if x.is_active %} checked {% endif %} onclick="toogled(this)">
+                                        <label class="custom-control-label" for="customSwitches_{{ x.id }}"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <!-- website about sections-->
+        <div class="my-grid d-flex flex-column mt-4" style='text-align: center;'>
+            <pre>
+
+                Hello, Welcome to URL Shortyme!. Glad you're here.
+
+                This website is build by <a href="https://www.linkedin.com/in/muhammedfarispy/">Mr.Faris</a><i>(Yeah, That's me!)</i> as part of learning Django.
+                As of now, it has only limited features, but planning to intergate more to it in coming days.
+                
+                If you have a sugestion, feel free to contact him.
+
+                Thank you for your time.
+            </pre>
+        </div>       
+    </div>  
+</div>
+<script type="text/javascript">
+
+    
+
+    function toogled(elem){
+
+        // will get the updated value when the toogle switch worked.
+        var isChecked = elem
+        var id = isChecked.id.split('_')
+        var requestData = {
+            "csrfmiddlewaretoken": "{{ csrf_token }}",
+            'id': id[1],
+            'status': isChecked.checked, 
+        }
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: "{% url 'toogle_update' %}",
+            data: requestData,
+            timeout: 10000,
+            success: function(data){
+                if (data.result == 'success'){
+                    if (data.status == 'true') {
+                        $("#activate_alert").show();
+                        setTimeout(function() { $("#activate_alert").hide(); }, 1000);
+                    }
+                    else if (data.status == 'false'){
+                        $("#deactivate_alert").show();
+                        setTimeout(function() { $("#deactivate_alert").hide(); }, 1000);
+                    }
+                }               
+            }
+        });
+
+    }
+
+
+</script>
+{% endblock content %}

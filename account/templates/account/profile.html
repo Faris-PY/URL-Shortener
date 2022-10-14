@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="d-flex flex-row justify-content-center flex-wrap align-items-start">
+ 
+		<div class="card profile-card m-2 text-center">
+		  <div class="card-body">
+		  	<div class="d-flex flex-column justify-content-center p-4">
+		  		<div class="image-container mx-auto mb-4">
+		  			<img class="d-block border border-dark rounded-circle img-fluid mx-auto profile-image" alt="Profile" id="id_profile_image" src="{{ profilePic }}" >
+				</div>
+					
+				</div>
+		  		<p class="mt-4 mb-1 field-heading">Email</p> 
+				<h5>{{ email }}</h5>
+		  		<p class="mt-4 mb-1 field-heading">Username</p> 
+				<h5>{{ username }}</h5>
+		  		<a  class="mt-4 btn btn-primary" href="{% url 'account:edit_profile' %}">Update</a>
+				<div class="d-flex flex-column mt-4">
+					<a class="m-auto" href="{% url 'account:change_password' %}">Change password</a>
+				</div>
+		  	</div>
+		  </div>
+		</div>		
+	</div>
+</div>
+
+{% endblock content %}

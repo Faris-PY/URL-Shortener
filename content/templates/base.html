@@ -1,0 +1,58 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+        <link href="{% static 'cropperjs/dist/cropper.min.css' %}" rel="stylesheet" >
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <link rel="icon" href="{% static 'favicon.ico' %}">
+        <title>URL shortyme</title>
+    </head>
+    <body>
+        <!--header-->
+        {% include 'layout/header.html' %}
+        
+        <div class="container" id="id_loading_spinner" style="display: none">
+            <div class="d-flex flex-row mx-auto flex-grow-1 justify-content-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>        
+        <!--Body-->
+        <div class="main">
+            {% bootstrap_messages %}
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+        <!--End of body-->
+        
+        <!--Footer-->
+        {% include 'layout/footer.html' %}
+
+        <script src="{% static 'vendor/jquery/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+        <script src="{% static 'cropperjs/dist/cropper.min.js' %}" type="module"></script>
+
+        <script type="text/javascript">
+            function displayLoadingSpinner(isDisplayed){
+                var spinner = document.getElementById("id_loading_spinner")
+                if(isDisplayed){
+                    spinner.style.display = "block"
+                }
+                else{
+                    spinner.style.display = "none"
+                }
+            }
+        </script>
+    </body>
+</html>

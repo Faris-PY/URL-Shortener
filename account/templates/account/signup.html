@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card card-signup">
+            <div class="card-body">
+                <form class="form-signup" method="post">
+                    {% csrf_token %}
+                    <div class="d-flex flex-column pb-3">
+                        <img class="img-fluid mx-auto d-block" src="{% static 'default/signin_signup_logo.jpg' %}" alt="User logo" width="72" height="72">
+                    </div>
+                    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="text" name="username" id="inputusername" class="form-control" placeholder="Username" required autofocus>
+                    <input type="text" name="firstname" id="inputfirstname" class="form-control" placeholder="First name" required autofocus>
+                    <input type="password" name="password1" id="inputpassword1" class="form-control" placeholder="Password" required>
+                    <input type="password" name="password2" id="inputpassword2" class="form-control" placeholder="Confirm password" required>
+                    
+                    {% if signupForm.errors %}
+                        {% for field in signupForm %}
+                        <p>
+                            {% for error in field.errors %}
+                            <p style="color:red" role="alert">{{ error|escape }}</p>
+                            {% endfor %}
+                        </p>
+                        {% endfor %}
+                        
+                        {% for error in signupForm.non_field_errors %}
+                        <div style="color: red">
+                            <p>{{  error|escape }}</p>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                    <br>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

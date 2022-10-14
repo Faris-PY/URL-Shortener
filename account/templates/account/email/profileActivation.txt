@@ -1,0 +1,13 @@
+Hi,
+
+
+Thanks for signing up with URL-shorterner! You must follow this link to activate your account:
+
+{{ uri }}
+
+Have fun, and don't hesitate to contact us with your feedback.
+
+Team URL shortyme
+
+
+
